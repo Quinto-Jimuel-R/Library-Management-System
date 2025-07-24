@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('borroweds', function (Blueprint $table) {
             $table->id();
-            $table->string('book_code')->unique();
-            $table->string('title');
-            $table->string('author');
-            $table->string('genre');
-            $table->string('status')->default('Available');
+            $table->id('user_id');
+            $table->id('book_id');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('borroweds');
     }
 };

@@ -54,7 +54,7 @@
                 <tr class="border-b-1">
                     <td class="p-4">{{ $user -> name }} 
                         @if ($user->created_at->gt(now()->subDay()))
-                            <span class="rounded-md px-1 ms-1 bg-green-700 font-bold text-xs tracking-wide">New</span>
+                            <span class="rounded px-1 ms-1 bg-green-700 font-bold text-xs tracking-wide">New</span>
                         @endif
                     </td>
                     <td class="p-4">{{ $user -> email }}</td>

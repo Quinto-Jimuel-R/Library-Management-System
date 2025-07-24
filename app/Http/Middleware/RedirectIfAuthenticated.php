@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
                 return redirect()->intended('/admin/dashboard');
             } 
             elseif ($user->role === 'user') {
-                return redirect()->intended('/user/dashboard');
+                return redirect()->intended('/user/book');
             }
         }
 

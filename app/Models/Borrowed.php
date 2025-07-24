@@ -6,18 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Book extends Model
+class Borrowed extends Model
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'books';
+    protected $table = 'borroweds';
 
     protected $fillable = [
-        'book_code',
-        'title',
-        'author',
-        'genre',
-        'status',
+        'user_id',
+        'book_id',
     ];
-    
 }

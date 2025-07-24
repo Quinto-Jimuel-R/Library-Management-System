@@ -1,26 +1,15 @@
-const filterBtn = document.getElementById('filterStatusBtn');
-    const dropdown = document.getElementById('filterDropdown');
-    const tooltip = document.getElementById('tooltipDropdown');
+const $btn = $('#filterStatusBtn');
+const $dropdown = $('#filterDropdown');
+const $tooltip = $('#tooltipDropdown');
 
-    let isOpen = false;
-
-    filterBtn.addEventListener('click', () => {
-        isOpen = !isOpen;
-        dropdown.classList.toggle('hidden', !isOpen);
-
-        // Hide tooltip manually when dropdown is open
-        if (isOpen) {
-            tooltip.classList.add('!hidden');
-        } else {
-            tooltip.classList.remove('!hidden');
-        }
-    });
-
-    // Hide dropdown if clicked outside
-    document.addEventListener('click', (e) => {
-        if (!filterBtn.contains(e.target) && !dropdown.contains(e.target)) {
-            dropdown.classList.add('hidden');
-            isOpen = false;
-            tooltip.classList.remove('!hidden');
-        }
-    });
+$(document).on('click', function(e) {
+  if ($btn.is(e.target) || $btn.has(e.target).length || $dropdown.has(e.target).length) {
+    if ($btn.is(e.target) || $btn.has(e.target).length) {
+      $dropdown.toggleClass('hidden');
+      $tooltip.toggleClass('!hidden', !$dropdown.hasClass('hidden'));
+    }
+  } else {
+    $dropdown.addClass('hidden');
+    $tooltip.removeClass('!hidden');
+  }
+});

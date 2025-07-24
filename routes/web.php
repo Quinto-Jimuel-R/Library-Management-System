@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\UserController;
 
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\User\UsersController;
+
 
 Route::middleware(['guest'])->group(function () {
 
@@ -43,5 +44,5 @@ Route::prefix('admin')->middleware(['auth:admin', 'prevent-back-history'])->grou
 });
 
 Route::prefix('user')->middleware(['auth:user', 'prevent-back-history'])->group(function () {
-    Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('/book', [UsersController::class, 'book'])->name('user.book');
 });

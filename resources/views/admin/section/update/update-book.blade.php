@@ -50,6 +50,13 @@
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label for="genre" class="block text-sm font-medium text-white">Genre</label>
+                    <input type="text" id="genre" name="genre" value="{{ old('genre', $book->genre) }}" class="block w-full text-sm rounded-sm border border-gray-300 p-2 focus:ring focus:ring-blue-400 focus:ring-opacity-50 focus:border-blue-200 focus:outline-none">
+                    @error('genre')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
                 <button type="submit" class="w-full md:w-auto bg-green-500 text-white rounded p-2 cursor-pointer">
                     Save
                 </button>

@@ -24,12 +24,14 @@ class BookController extends Controller
             'book_code' => ['required', 'string', Rule::unique('books', 'book_code')],
             'title' => ['required', 'string', 'max:100', Rule::unique('books', 'title')],
             'author' => ['required', 'string', 'max:100'],
+            'genre' => ['required', 'string'],
         ]);
 
         $book = Book::create([
             'book_code' => $request->book_code,
             'title' => $request->title,
             'author' => $request->author,
+            'genre' => $request->genre,
         ]);
 
         $book_code = $book->book_code;
@@ -53,12 +55,14 @@ class BookController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'max:100'],
             'author' => ['required', 'string', 'max:100'],
+            'genre' => ['required', 'string'],
         ]);
 
         $book = Book::findOrFail($id);
         $book_data = [
             'title' => $request->title,
             'author' => $request->author,
+            'genre' => $request->genre,
         ];
 
         $book->update($book_data);

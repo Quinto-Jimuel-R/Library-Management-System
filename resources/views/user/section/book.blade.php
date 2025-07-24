@@ -1,15 +1,16 @@
-@extends('admin.main_layout')
+@extends('user.main_layout')
 
 @section('head')
+
 @endsection
 
 @section('breadcrumbs')
 <nav class="text-white text-sm" aria-label="Breadcrumb">
-  <ol class="list-none p-0 inline-flex space-x-2">
-    <li class="flex items-center">
-      <a href="{{ route('admin.books') }}" class="text-white">Books</a>
-    </li>
-  </ol>
+    <ol class="list-none p-0 inline-flex space-x-2">
+        <li class="flex items-center">
+            <a href="{{ route('user.book') }}" class="text-white">Book</a>
+        </li>
+    </ol>
 </nav>
 @endsection
 
@@ -51,7 +52,7 @@
                 </tr>
             </thead>
             <tbody class="text-xs">
-                @forelse ($books as $book)
+                @forelse ( $books as $book )
                 <tr class="border-b-1">
                     <td class="p-4">{{ $book->book_code }}</td>
                     <td class="p-4">
@@ -77,22 +78,7 @@
                         </div>
                     </td>
                     <td class="p-4">
-                        <div class="flex flex-row justify-center space-x-3">
-                            <a href="{{ route('book.edit', ['id' => $book->id]) }}" class="outline-none">
-                                <button class="py-1 px-2 cursor-pointer rounded bg-green-500 focus:ring focus:ring-blue-400 focus:ring-opacity-50 focus:border-blue-200 focus:outline-none">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                             </a>
-                            <form action="{{ route('book.delete', ['id' => $book->id]) }}" method="POST" onsubmit="return confirm('Are you sure?')">
-                                @csrf
-                                @method('DELETE')
-                                <a href="#" class="outline-none">
-                                    <button type="submit" class="py-1 px-2 cursor-pointer rounded bg-red-500 focus:ring focus:ring-blue-400 focus:ring-opacity-50 focus:border-blue-200 focus:outline-none">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </a>
-                            </form>
-                        </div>
+
                     </td>
                 </tr>
                 @empty
@@ -111,5 +97,5 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/book.js') }}"></script>
+
 @endsection

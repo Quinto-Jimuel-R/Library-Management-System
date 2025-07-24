@@ -12,8 +12,10 @@ class AdminController extends Controller
     public function dashboard()
     {
         $total_books = Book::count();
-        $total_students = User::where('role', 'user')->count();
-        return view('admin.section.dashboard', compact('total_books', 'total_students'));
+        $total_borrowed = Book::where('status', '=', 'borrowed')->count();
+        $total_overdue = Book::where('status', '=', 'overdue')->count();
+        $total_users = User::where('role', 'user')->count();
+        return view('admin.section.dashboard', compact('total_books', 'total_borrowed', 'total_overdue', 'total_users'));
     }
 
     public function books()
