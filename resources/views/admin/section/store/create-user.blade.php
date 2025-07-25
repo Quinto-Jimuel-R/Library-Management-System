@@ -48,7 +48,7 @@
                             class="block w-full text-sm rounded-sm border border-gray-300 p-2 focus:ring focus:ring-blue-400 focus:ring-opacity-50 focus:border-blue-200 focus:outline-none">
                             <option value="" class="hidden" {{ old('member_type') === null ? 'selected' : '' }}>Select...</option>
                             <option value="admin" class="text-[#0b132b]" {{ old('member_type') === 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="user" class="text-[#0b132b]" {{ old('member_type') === 'user' ? 'selected' : '' }}>Student</option>
+                            <option value="user" class="text-[#0b132b]" {{ old('member_type') === 'user' ? 'selected' : '' }}>User</option>
                         </select>
                         @error('member_type')
                         <span class="text-red-500 text-sm">{{ $message }}</span>

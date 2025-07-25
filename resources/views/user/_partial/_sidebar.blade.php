@@ -10,8 +10,8 @@
 
     <ul class="space-y-1 overflow-y-auto flex-1 m-2">
         <li>
-            <a href="{{ route('user.book') }}" class="flex flex-row md:flex-col lg:flex-row items-center p-3 md:py-2 lg:p-3 rounded text-sm transition-all duration-100 text-white 
-                {{ request()->routeIs('user.book') ? 'bg-[#0b132b] text-[#3a506b] font-bold' : 'hover:font-bold hover:bg-white hover:text-[#3a506b]'}}">
+            <a href="{{ route('users.book') }}" class="flex flex-row md:flex-col lg:flex-row items-center p-3 md:py-2 lg:p-3 rounded text-sm transition-all duration-100 text-white 
+                {{ request()->routeIs('users.book') || request()->routeIs('users.book.search') ? 'bg-[#0b132b] text-[#3a506b] font-bold' : 'hover:font-bold hover:bg-white hover:text-[#3a506b]'}}">
                 <i class="fa-solid fa-book mr-5 md:mr-0 lg:mr-5 mb-0 md:mb-1 lg:mb-0 w-8 text-center"></i>
                 <span class="text-sm md:text-[10px] lg:text-sm">Books</span>
             </a>

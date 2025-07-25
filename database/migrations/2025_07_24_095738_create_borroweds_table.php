@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('borroweds', function (Blueprint $table) {
             $table->id();
-            $table->id('user_id');
-            $table->id('book_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('book_id');
+            $table->date('borrow_date');
+            $table->date('due_date');
+            $table->date('return_date')->nullable();
             $table->timestamps();
         });
     }

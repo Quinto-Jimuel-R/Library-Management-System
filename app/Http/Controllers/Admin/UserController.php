@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -16,16 +15,9 @@ class UserController extends Controller
         return view('admin.section.store.create-user');
     }
 
-    public function create(Request $request)
+    public function create(UserRequest $request)
     {
-        $request->validate([
-            'email' => ['required', 'string', 'email', 'max:100', Rule::unique('users', 'email')],
-            'name' => ['required', 'string', 'max:100'],
-            'member_type' => ['required', 'string'],
-            'password' => ['required', 'string', Password::min(8)->mixedCase()->numbers()->symbols()],
-        ]);
-
-        $user = User::create([
+        User::create([
             'email' => $request->email,
             'name' => $request->name,
             'role' => $request->member_type,

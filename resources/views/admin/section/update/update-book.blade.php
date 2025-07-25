@@ -38,6 +38,10 @@
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="block text-sm font-medium text-white">Title</label>
+                    <input type="text" name="book_code" readonly  value="{{ old('book_code', $book->book_code) }}" class="block w-full tracking-widest text-sm rounded-sm border border-gray-300 p-2 focus:ring focus:ring-blue-400 focus:ring-opacity-50 focus:border-blue-200 focus:outline-none">
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="block text-sm font-medium text-white">Title</label>
                     <input type="text" id="title" name="title" value="{{ old('title', $book->title) }}" class="block w-full text-sm rounded-sm border border-gray-300 p-2 focus:ring focus:ring-blue-400 focus:ring-opacity-50 focus:border-blue-200 focus:outline-none">
                     @error('title')
                     <span class="text-red-500 text-sm">{{ $message }}</span>

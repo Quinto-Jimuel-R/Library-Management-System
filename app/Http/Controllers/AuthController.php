@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -26,7 +25,7 @@ class AuthController extends Controller
             if ($user->role === 'admin') {
                 return redirect()->intended('/admin/dashboard');
             } elseif ($user->role === 'user') {
-                return redirect()->intended('/user/dashboard');
+                return redirect()->intended('/user/book');
             }
 
             return redirect('login')->with('error', 'Unauthorized access');

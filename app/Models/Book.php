@@ -19,5 +19,14 @@ class Book extends Model
         'genre',
         'status',
     ];
-    
+
+    public function borrow()
+    {
+        return $this->hasMany(Borrowed::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

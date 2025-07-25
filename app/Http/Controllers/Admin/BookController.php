@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Models\Book;
+use App\Http\Requests\BookRequest;
 
 class BookController extends Controller
 {
@@ -18,21 +18,10 @@ class BookController extends Controller
         return view('admin.section.store.create-book', compact('code'));
     }
 
-    public function create(Request $request)
+    public function create(BookRequest $request)
     {
-        $request->validate([
-            'book_code' => ['required', 'string', Rule::unique('books', 'book_code')],
-            'title' => ['required', 'string', 'max:100', Rule::unique('books', 'title')],
-            'author' => ['required', 'string', 'max:100'],
-            'genre' => ['required', 'string'],
-        ]);
 
-        $book = Book::create([
-            'book_code' => $request->book_code,
-            'title' => $request->title,
-            'author' => $request->author,
-            'genre' => $request->genre,
-        ]);
+        $book = Book::create($request->only('book_code', 'title', 'author', 'genre'));
 
         $book_code = $book->book_code;
 
@@ -50,22 +39,11 @@ class BookController extends Controller
         return view('admin.section.update.update-book', compact('book'));
     }
 
-    public function update(Request $request, $id)
+    public function update(BookRequest $request, $id)
     {
-        $request->validate([
-            'title' => ['required', 'string', 'max:100'],
-            'author' => ['required', 'string', 'max:100'],
-            'genre' => ['required', 'string'],
-        ]);
-
         $book = Book::findOrFail($id);
-        $book_data = [
-            'title' => $request->title,
-            'author' => $request->author,
-            'genre' => $request->genre,
-        ];
 
-        $book->update($book_data);
+        $book->update($request->only('title', 'author', 'genre'));
 
         return redirect()->route('admin.books')->with('success', 'Updated Successfully');
     }

@@ -53,6 +53,7 @@
             <main class="bg-[#0b132b] min-h-full p-6 overflow-y-auto flex-1 transition-all duration-300 ease-in-out">
                 @yield('content')
             </main>
+            
         </div>
 
     </div>

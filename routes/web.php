@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\User\UsersController;
-
+use App\Http\Controllers\User\BooksController;
 
 Route::middleware(['guest'])->group(function () {
 
@@ -44,5 +44,8 @@ Route::prefix('admin')->middleware(['auth:admin', 'prevent-back-history'])->grou
 });
 
 Route::prefix('user')->middleware(['auth:user', 'prevent-back-history'])->group(function () {
-    Route::get('/book', [UsersController::class, 'book'])->name('user.book');
+    Route::get('/book', [UsersController::class, 'books'])->name('users.book');
+
+    Route::get('/search/book', [BooksController::class, 'search'])->name('users.book.search');
+    Route::post('/book/borrow/{id}', [BooksController::class, 'borrow'])->name('users.book.borrow');
 });
