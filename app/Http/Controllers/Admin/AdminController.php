@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Borrowed;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -15,7 +17,13 @@ class AdminController extends Controller
         $total_borrowed = Book::where('status', '=', 'borrowed')->count();
         $total_overdue = Book::where('status', '=', 'overdue')->count();
         $total_users = User::where('role', 'user')->count();
-        return view('admin.section.dashboard', compact('total_books', 'total_borrowed', 'total_overdue', 'total_users'));
+        $top_books = Borrowed::select('book_id', DB::raw('COUNT(*) as borrow_count'))
+        ->groupBy('book_id')
+        ->orderByDesc('borrow_count')
+        ->limit(5)
+        ->with('book')->get();
+
+        return view('admin.section.dashboard', compact('total_books', 'total_borrowed', 'total_overdue', 'total_users', 'top_books'));
     }
 
     public function books()

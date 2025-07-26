@@ -131,7 +131,7 @@
 
         <!-- Right: Calendar -->
         <div class="md:col-span-2">
-            <div class="bg-[#1c2541] text-white rounded-lg shadow-md p-3 w-full max-w-md">
+            <div class="bg-[#1c2541] text-white rounded-lg shadow-md p-3 w-full max-w-md mb-2">
                 <div class="flex justify-between items-center mb-4">
                     <button onclick="changeMonth(-1)" class="bg-[#3a506b] hover:bg-white hover:text-[#1c2541] px-3 py-1 rounded">
                         <i class="fa-solid fa-arrow-left text-xs"></i>
@@ -153,6 +153,19 @@
                 </div>
 
                 <div id="calendarDates" class="grid grid-cols-7 text-center text-sm gap-y-2"></div>
+            </div>
+
+            <div class="p-3 bg-[#1c2541] rounded-md">
+                <div class="mb-2">
+                    <h2 class="text-sm font-bold">Top Borrowed Books</h2>
+                </div>
+
+                @foreach ($top_books as $top)
+                <div class="flex flex-row justify-between bg-white text-[#1c2541] rounded p-2 mb-2">
+                    <div class="text-sm">{{ $top->book->title }}</div>
+                    <div class="text-sm">{{ $top->book->author }}</div>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>

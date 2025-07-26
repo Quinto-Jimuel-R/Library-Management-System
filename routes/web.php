@@ -48,4 +48,5 @@ Route::prefix('user')->middleware(['auth:user', 'prevent-back-history'])->group(
 
     Route::get('/search/book', [BooksController::class, 'search'])->name('users.book.search');
     Route::post('/book/borrow/{id}', [BooksController::class, 'borrow'])->name('users.book.borrow');
+    Route::post('/return/{borrow_id}', [BooksController::class, 'return'])->name('users.book.return');
 });

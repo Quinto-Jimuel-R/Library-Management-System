@@ -60,4 +60,21 @@ class BooksController extends Controller
         return redirect()->route('users.book')->with('success', 'Borrowed Successfully');
     }
 
+    public function return($borrow_id)
+    {
+        $returnBook = Borrowed::findOrFail($borrow_id);
+
+        $returnBook->update([
+            'return_date' => now(),
+        ]);
+
+        $book_id = $returnBook->book_id;
+
+        $book = Book::findOrFail($book_id);
+        $book->update([
+            'status' => 'Available',
+        ]);
+
+        return redirect()->route('users.book')->with('success', 'Returned Successfully');
+    }
 }

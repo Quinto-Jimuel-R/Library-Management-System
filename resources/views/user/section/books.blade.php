@@ -19,7 +19,11 @@
 
     @foreach ($notReturnBook as $borrow)
         <div class="bg-[#3a506b] p-2 mb-2 rounded text-white">
-            {{ $borrow->book->title }}
+            {{ $borrow->book->title }} {{ $borrow->user->name }} 
+            <form action="{{ route('users.book.return', ['borrow_id' => $borrow->id]) }}" method="POST">
+                @csrf
+                <button type="submit p-2 bg-red-500">Return</button>
+            </form>
         </div>
     @endforeach
 
