@@ -21,7 +21,7 @@ class BookFactory extends Factory
             'title' => fake()->unique()->sentence(3),
             'author' => fake()->name(),
             'genre' => fake()->randomElement(['Fiction', 'History', 'Novel']),
-            'status' => fake()->randomElement(['Available', 'Reserved', 'Borrowed', 'Overdue', 'Lost']),
+            'status' => fake()->randomElement(['Available', 'Borrowed', 'Overdue', 'Lost']),
         ];
     }
 }

@@ -36,12 +36,14 @@ class BooksController extends Controller
     {
         $user_id = Auth::id();
 
-        $hasUnreturned = Borrowed::where('user_id', $user_id)
+        $unreturned = Borrowed::where('user_id', $user_id)
             ->whereNull('return_date')
-            ->exists();
+            ->with('book')
+            ->first();
 
-        if ($hasUnreturned) {
-            return redirect()->back()->with('error', 'You must return your current book before borrowing another.');
+        if ($unreturned) {
+            $unreturnedBook = $unreturned->book->title; 
+            return redirect()->back()->with('error', 'You must return ' . $unreturnedBook . ' before borrowing another.');
         }
 
         $book = Book::findOrFail($id);

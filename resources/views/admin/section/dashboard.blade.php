@@ -110,23 +110,30 @@
                         <h2 class="font-bold">Reports</h2>
                     </div>
                     <div class="flex">
-                        <span class="text-sm">View all</span>
+                        <a href="{{ route('admin.reports') }}">
+                            <span class="text-sm cursor-pointer hover:underline">View all</span>
+                        </a>
                     </div>
                 </div>
-                <div class="bg-white px-4 py-3 text-[#1c2541] rounded shadow-sm border-l-[5px] border-l-blue-400">
+
+                @forelse ($latestReports as $report)
+                <div class="bg-white px-4 py-3 text-[#1c2541] rounded shadow-sm border-l-[5px] border-l-blue-400 mb-2">
                     <div class="flex justify-between gap-2">
                         <div class="font-normal text-gray-700 w-full">
-                            <div class="text-base font-medium">Name</div>
+                            <div class="text-base font-medium">{{ $report->user->name ?? 'Unknown User' }}</div>
                             <div class="flex space-x-3">
                                 <div class="text-sm truncate w-full">
-                                    Reserved the book "Safe Skies Archer".
+                                    Borrowed the book "{{ $report->book->title ?? 'Unknown Book' }}".
                                 </div>
-                                <div class="flex items-center pt-1 text-xs font-normal whitespace-nowrap">2:00 pm</div>
                             </div>
                         </div>
                     </div>
                 </div>
+                @empty
+                <div class="text-white text-sm mt-2">No recent borrow records found.</div>
+                @endforelse
             </div>
+
         </div>
 
         <!-- Right: Calendar -->

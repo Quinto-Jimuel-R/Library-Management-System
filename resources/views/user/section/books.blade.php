@@ -16,19 +16,20 @@
 
 @section('content')
 <div class="text-white bg-[#1c2541] p-5 rounded">
-
+    
     @foreach ($notReturnBook as $borrow)
-        <div class="bg-[#3a506b] p-2 mb-2 rounded text-white">
-            {{ $borrow->book->title }} {{ $borrow->user->name }} 
-            <form action="{{ route('users.book.return', ['borrow_id' => $borrow->id]) }}" method="POST">
-                @csrf
-                <button type="submit p-2 bg-red-500">Return</button>
-            </form>
+        <div class="bg-[#3a506b] ps-3 p-1 mb-2 rounded text-white flex items-center justify-between">
+            <div>
+                {{ $borrow->book->title }}
+            </div>
+            <div>
+                <form action="{{ route('users.book.return', ['borrow_id' => $borrow->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="px-2 rounded py-1 bg-red-500 cursor-pointer"><i class="fa-solid fa-rotate-left"></i></button>
+                </form>
+            </div>
         </div>
     @endforeach
-
-    <span class="text-red-600">{{ session('error') }}</span>
-    
     
     <div class="flex justify-between mb-3 space-x-2 items-center">
         <!-- Search Bar -->

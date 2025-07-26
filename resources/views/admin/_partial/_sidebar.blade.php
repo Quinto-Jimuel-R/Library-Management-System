@@ -69,12 +69,6 @@
         <div id="userDropdownMenu" class="absolute top-[-100%] mb-5 w-full text-black rounded z-50 border border-white bg-[#1c2541] transform scale-95 opacity-0 pointer-events-none transition-all duration-500 ease-out">
             <div class="bg-[#1c2541] rounded p-2 flex flex-col space-y-1">
                 <div>
-                    <button class="w-full p-2 md:py-1 lg:py-2 rounded hover:cursor-pointer text-sm bg-[#0b132b] text-white flex flex-row md:flex-col lg:flex-row items-center justify-start items-center hover:font-bold hover:bg-white hover:text-[#3a506b]">
-                        <i class="fa-solid fa-user w-10 mb-0 md:mb-1 lg:mb-0"></i>
-                        <span class="text-sm md:text-[10px] lg:text-sm">Profile</span>
-                    </button>
-                </div>
-                <div>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="w-full p-2 md:py-1 lg:py-2 rounded hover:cursor-pointer text-sm bg-[#0b132b] text-white flex flex-row md:flex-col lg:flex-row justify-start items-center hover:font-bold hover:bg-white hover:text-[#3a506b]">

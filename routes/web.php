@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\User\UsersController;
 use App\Http\Controllers\User\BooksController;
+use App\Http\Controllers\User\HistoryController;
 
 Route::middleware(['guest'])->group(function () {
 
@@ -41,10 +42,12 @@ Route::prefix('admin')->middleware(['auth:admin', 'prevent-back-history'])->grou
     Route::post('/store/user', [UserController::class, 'create'])->name('user.store');
     Route::delete('/delete/user-{id}', [UserController::class, 'delete'])->name('user.delete');
     
+    Route::get('/report', [AdminController::class, 'report'])->name('book.report');
 });
 
 Route::prefix('user')->middleware(['auth:user', 'prevent-back-history'])->group(function () {
     Route::get('/book', [UsersController::class, 'books'])->name('users.book');
+    Route::get('/history', [HistoryController::class, 'history'])->name('users.history');
 
     Route::get('/search/book', [BooksController::class, 'search'])->name('users.book.search');
     Route::post('/book/borrow/{id}', [BooksController::class, 'borrow'])->name('users.book.borrow');

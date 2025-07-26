@@ -22,8 +22,12 @@ class AdminController extends Controller
         ->orderByDesc('borrow_count')
         ->limit(5)
         ->with('book')->get();
+        $latestReports = Borrowed::with(['user', 'book'])
+        ->latest('borrow_date')
+        ->take(5)
+        ->get();
 
-        return view('admin.section.dashboard', compact('total_books', 'total_borrowed', 'total_overdue', 'total_users', 'top_books'));
+        return view('admin.section.dashboard', compact('total_books', 'total_borrowed', 'total_overdue', 'total_users', 'top_books', 'latestReports'));
     }
 
     public function books()
@@ -32,14 +36,19 @@ class AdminController extends Controller
         return view('admin.section.books', compact('books'));
     }
 
-    public function reports()
-    {
-        return view('admin.section.reports');
-    }
-
     public function users()
     {
         $users = User::where('role', 'user')->orderBy('id', 'desc')->paginate(10);
         return view('admin.section.users', compact('users'));
     }
+
+    public function reports()
+    {
+        $reports = Borrowed::with(['user', 'book'])
+            ->orderByDesc('borrow_date')
+            ->paginate(10);
+
+        return view('admin.section.reports', compact('reports'));
+    }
+
 }
